@@ -44,27 +44,34 @@ class ReportsController extends Controller{
             'date2'=>$date2
         ]);
     }
-    public function actionIndivopddiag($pdx=null,$date1=null,$date2=null){
+    public function actionIndivopddiag($pdx=null,$date1=null,$date2=null,$icdname=null){
         
         $sql = "select a.hn,p.pname,p.fname,p.lname,a.pdx,a.vstdate
-        from vn_stat a 
-        left outer join patient p on p.hn=a.hn
-        left outer join icd101 i on i.code=a.main_pdx 
-        where a.vstdate between '$date1' and '$date2' 
-        and a.pdx<>'' and a.pdx is not null 
-        and a.pdx='$pdx'
-        order by a.vn";
+            ,i.name as icdname 
+            from vn_stat a 
+            left outer join patient p on p.hn=a.hn
+            left outer join icd101 i on i.code=a.main_pdx 
+            where a.vstdate between '$date1' and '$date2' 
+            and a.pdx<>'' and a.pdx is not null 
+            and a.pdx='$pdx'
+            order by a.vn";
         
          try {
             $rawData = \Yii::$app->db2->createCommand($sql)->queryAll();
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
-        
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$rawData,
+            'pagination'=>[
+                'pagesize'=>10
+            ]
+        ]);
         return $this->render('indivopddiag', [
             'rawData' => $rawData,
             'sql'=>$sql,
-            'pdx'=>$pdx
+            'pdx'=>$pdx,
+            'icdname'=>$icdname
             
         ]);
     }

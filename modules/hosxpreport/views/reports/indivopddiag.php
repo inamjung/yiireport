@@ -5,6 +5,7 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use kartik\grid\GridView;
 //use miloschuman\highcharts\Highcharts;
+//$datas = $dataProvider->getModels();
 ?>
 
 <?php
@@ -79,7 +80,8 @@ echo GridView::widget([
     //'showPageSummary' => true,
     'panel' => [
         'type' => GridView::TYPE_INFO,
-        'heading' => 'รายชื่ออันดับโรค OPD'
+        'heading' => 'รายชื่ออันดับโรค OPD',
+        'before'=>'โรค = '.$rawData[0]['icdname'],
     ],
 ]);
 ?>
