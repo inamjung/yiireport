@@ -6,14 +6,19 @@ use Yii;
 class ReportsController extends Controller{
     
     
-    public function actionOpddiag(){
+    public function actionOpddiag($pdx=null,$date1=null,$date2=null,$icdname=null,$a=null){
+        
+        if($date1 == null){
+            $date1 = date('Y-m-d');
+            $date2 = date('Y-m-d');
+        }
         $connection = Yii::$app->db2;
         $data = $connection->createCommand("select a.pdx
             ,i.name as icdname 
             ,count(a.pdx) as a
             from vn_stat a 
             left outer join icd101 i on i.code=a.main_pdx 
-            where a.vstdate between '2013-10-01' and '2013-10-31' 
+            where a.vstdate between '$date1' and '$date2' 
             and a.pdx<>'' and a.pdx is not null  
             and a.pdx not like('%Z%')
             group by a.pdx,i.name 
@@ -34,16 +39,18 @@ class ReportsController extends Controller{
             'dataProvider' => $dataProvider,
             'pdx'=>$pdx,
             'icdname'=>$icdname,
-            'a'=>$a
+            'a'=>$a,
+            'date1'=>$date1,
+            'date2'=>$date2
         ]);
     }
-    public function actionIndivopddiag($pdx=null){
+    public function actionIndivopddiag($pdx=null,$date1=null,$date2=null){
         
         $sql = "select a.hn,p.pname,p.fname,p.lname,a.pdx,a.vstdate
         from vn_stat a 
         left outer join patient p on p.hn=a.hn
         left outer join icd101 i on i.code=a.main_pdx 
-        where a.vstdate between '2013-10-01' and '2013-10-31' 
+        where a.vstdate between '$date1' and '$date2' 
         and a.pdx<>'' and a.pdx is not null 
         and a.pdx='$pdx'
         order by a.vn";
