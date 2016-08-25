@@ -4,12 +4,12 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'language'=>'th_TH',
-    'name'=>'<img style="height:40px; margin-top:12px;" src="./img/cdc.png"> YiiReport',
+    'language' => 'th_TH',
+    'name' => '<img style="height:40px; margin-top:12px;" src="./img/cdc.png"> YiiReport',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
-         'view' => [
+        'view' => [
             'theme' => [
                 'pathMap' => [
                     '@app/views' => '@app/themes/adminlte'
@@ -47,18 +47,32 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'db2' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=hos',
+            'username' => 'sa',
+            'password' => 'sa',
+            'charset' => 'utf8',
         ],
-        */
+//        'db3' => [
+//            'class' => 'yii\db\Connection',
+//            'dsn' => 'mysql:host=localhost;dbname=dhdc',
+//            'username' => 'sa',
+//            'password' => 'sa',
+//            'charset' => 'utf8',
+//        ]
+    /*
+      'urlManager' => [
+      'enablePrettyUrl' => true,
+      'showScriptName' => false,
+      'rules' => [
+      ],
+      ],
+     */
     ],
-    'modules'=>[
-        'gridview'=>[
-            'class'=>'\kartik\grid\Module'
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
         ],
         'hosxpreport' => [
             'class' => 'app\modules\hosxpreport\Module',
