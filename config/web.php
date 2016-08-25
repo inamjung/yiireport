@@ -59,7 +59,10 @@ $config = [
     'modules'=>[
         'gridview'=>[
             'class'=>'\kartik\grid\Module'
-        ]
+        ],
+        'hosxpreport' => [
+            'class' => 'app\modules\hosxpreport\Module',
+        ],
     ],
     'params' => $params,
 ];
