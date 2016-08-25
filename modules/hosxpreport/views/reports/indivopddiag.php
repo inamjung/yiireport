@@ -77,6 +77,7 @@ echo GridView::widget([
     'hover' => true,
     'striped' => false,
     'floatHeader' => FALSE,
+    'export'=>FALSE,
     //'showPageSummary' => true,
     'panel' => [
         'type' => GridView::TYPE_INFO,

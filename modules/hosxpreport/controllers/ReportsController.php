@@ -6,7 +6,8 @@ use Yii;
 class ReportsController extends Controller{
     
     
-    public function actionOpddiag($pdx=null,$date1=null,$date2=null,$icdname=null,$a=null){
+    public function actionOpddiag(
+            $pdx=null,$date1=null,$date2=null,$icdname=null,$a=null){
         
         if($date1 == null){
             $date1 = date('Y-m-d');
@@ -44,7 +45,8 @@ class ReportsController extends Controller{
             'date2'=>$date2
         ]);
     }
-    public function actionIndivopddiag($pdx=null,$date1=null,$date2=null,$icdname=null){
+    public function actionIndivopddiag($pdx=null,
+            $date1=null,$date2=null,$icdname=null){
         
         $sql = "select a.hn,p.pname,p.fname,p.lname,a.pdx,a.vstdate
             ,i.name as icdname 
