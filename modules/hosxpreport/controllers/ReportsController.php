@@ -37,7 +37,7 @@ class ReportsController extends Controller{
             'a'=>$a
         ]);
     }
-    public function actionIndivopddiag(){
+    public function actionIndivopddiag($pdx=null){
         
         $sql = "select a.hn,p.pname,p.fname,p.lname,a.pdx,a.vstdate
         from vn_stat a 
@@ -45,7 +45,7 @@ class ReportsController extends Controller{
         left outer join icd101 i on i.code=a.main_pdx 
         where a.vstdate between '2013-10-01' and '2013-10-31' 
         and a.pdx<>'' and a.pdx is not null 
-        and a.pdx='I10'
+        and a.pdx='$pdx'
         order by a.vn";
         
          try {
@@ -56,7 +56,8 @@ class ReportsController extends Controller{
         
         return $this->render('indivopddiag', [
             'rawData' => $rawData,
-            'sql'=>$sql
+            'sql'=>$sql,
+            'pdx'=>$pdx
             
         ]);
     }

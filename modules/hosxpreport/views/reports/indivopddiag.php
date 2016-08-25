@@ -42,7 +42,7 @@ $gridColumns=[
         'attribute'=>'hn',
         'label'=>'HN',
         'headerOptions'=>['class'=>'text-center']
-    ],
+    ],    
     [
         'attribute'=>'pname',
         'label'=>'คำนำหน้า',

@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\data\ArrayDataProvider;
@@ -9,25 +10,33 @@ use miloschuman\highcharts\Highcharts;
 
 
 <?php
-$gridColumns=[
-    ['class'=>'kartik\grid\SerialColumn'],    
+
+$gridColumns = [
+    ['class' => 'kartik\grid\SerialColumn'],
     [
-        'attribute'=>'pdx',
-        'label'=>'รหัสโรค',
-        'headerOptions'=>['class'=>'text-center']
+        'attribute' => 'pdx',
+        'label' => 'รหัสโรค',
+        'headerOptions' => ['class' => 'text-center']
     ],
     [
-        'attribute'=>'icdname',
-        'label'=>'ชื่อโรค',
-        'headerOptions'=>['class'=>'text-center']
+        'attribute' => 'icdname',
+        'label' => 'ชื่อโรค',
+        'headerOptions' => ['class' => 'text-center']
     ],
     [
-        'attribute'=>'a',
-        'label'=>'จำนวน',
-        'headerOptions'=>['class'=>'text-center'],
-        'contentOptions'=>['class'=>'text-center']
-    ],    
-    
+        'attribute' => 'a',
+        'label' => 'จำนวน',
+        'headerOptions' => ['class' => 'text-center'],
+        'contentOptions' => ['class' => 'text-center'],
+        'format' => 'raw',
+        'value' => function($model)use($pdx) {
+    return Html::a(Html::encode($model['a']), [
+                'reports/indivopddiag',
+                'pdx'=>$model['pdx']
+                    ]
+    );
+}
+    ],
 ];
 echo GridView::widget([
     'dataProvider' => $dataProvider,
@@ -45,27 +54,29 @@ echo GridView::widget([
 ]);
 ?>
 
-<?php echo Highcharts::widget([
-    'options'=>[
+<?php
+
+echo Highcharts::widget([
+    'options' => [
         'credits' => ['enabled' => false],
-        'title'=>['text'=>'๑๐ อันดับโรค OPD'],
-        'xAxis'=>[
-            'categories'=>$icdname
+        'title' => ['text' => '๑๐ อันดับโรค OPD'],
+        'xAxis' => [
+            'categories' => $icdname
         ],
-        'yAxis'=>[
-            'title'=>['text'=>'จำนวน(คน)']
+        'yAxis' => [
+            'title' => ['text' => 'จำนวน(คน)']
         ],
-        'series'=>[
+        'series' => [
             [
-                'type'=>'column',
-                'name'=>'จำนวน',
-                'data'=>$a,
-                'dataLabels'=>[
-                    'enabled'=>true,
+                'type' => 'column',
+                'name' => 'จำนวน',
+                'data' => $a,
+                'dataLabels' => [
+                    'enabled' => true,
                 ],
-                
             ],
         ]
     ]
-]);?>
+]);
+?>
 

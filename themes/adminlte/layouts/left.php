@@ -35,6 +35,7 @@
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> กลุ่มงาน', 'url' => ['groups/index']],
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> หน่วยงาน', 'url' => ['departments/index']],
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> เพิ่มหน่วยงาน','url' => ['departments/create']],
+                    ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> รายงาน','url' => ['/hosxpreport/reports/opddiag']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Same tools',
