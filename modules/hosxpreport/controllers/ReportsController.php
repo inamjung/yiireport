@@ -1,11 +1,8 @@
 <?php
-
 namespace app\modules\hosxpreport\controllers;
-
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 use Yii;
-
 class ReportsController extends Controller{
     
     
@@ -40,5 +37,3 @@ class ReportsController extends Controller{
         ]);
     }
 }
-
-

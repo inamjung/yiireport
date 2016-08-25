@@ -4,7 +4,27 @@ use yii\helpers\Html;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use kartik\grid\GridView;
+use miloschuman\highcharts\Highcharts;
 ?>
+
+<?php
+echo Highcharts::widget([
+   'options' => [
+      'title' => ['text' => 'Fruit Consumption'],
+      'xAxis' => [
+         'categories' => ['Apples', 'Bananas', 'Oranges']
+      ],
+      'yAxis' => [
+         'title' => ['text' => 'Fruit eaten']
+      ],
+      'series' => [
+         ['name' => 'Jane', 'data' => [1, 0, 4]],
+         ['name' => 'John', 'data' => [5, 7, 3]]
+      ]
+   ]
+]);
+?>
+
 
 <?php
 $gridColumns=[
@@ -35,8 +55,5 @@ echo GridView::widget([
     ],
 ]);
 ?>
-
-
-
 
 
