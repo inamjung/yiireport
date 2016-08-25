@@ -14,7 +14,8 @@ class ReportsController extends Controller{
             from vn_stat a 
             left outer join icd101 i on i.code=a.main_pdx 
             where a.vstdate between '2013-10-01' and '2013-10-31' 
-            and a.pdx<>'' and a.pdx is not null             
+            and a.pdx<>'' and a.pdx is not null  
+            and a.pdx not like('%Z%')
             group by a.pdx,i.name 
             order by a desc 
             limit 10")->queryAll();

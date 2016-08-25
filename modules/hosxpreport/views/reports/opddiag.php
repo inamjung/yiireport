@@ -7,41 +7,25 @@ use kartik\grid\GridView;
 use miloschuman\highcharts\Highcharts;
 ?>
 
-<?php echo Highcharts::widget([
-    'options'=>[        
-        'title'=>['text'=>'สิบอันดับโรค OPD'],
-        'xAxis'=>[
-            'categories'=>$icdname
-        ],
-        'yAxis'=>[
-            'title'=>['text'=>'จำนวน(คน)']
-        ],
-        'series'=>[
-            [
-                'type'=>'line',
-                'name'=>'จำนวน',
-                'data'=>$a,
-                'dataLabels'=>[
-                    'enabled'=>true,
-                ]
-            ],
-            
-            
-        ]
-    ]
-]);?>
 
 <?php
 $gridColumns=[
     ['class'=>'kartik\grid\SerialColumn'],    
     [
-        'attribute'=>'pdx'
+        'attribute'=>'pdx',
+        'label'=>'รหัสโรค',
+        'headerOptions'=>['class'=>'text-center']
     ],
     [
-        'attribute'=>'icdname'
+        'attribute'=>'icdname',
+        'label'=>'ชื่อโรค',
+        'headerOptions'=>['class'=>'text-center']
     ],
     [
-        'attribute'=>'a'
+        'attribute'=>'a',
+        'label'=>'จำนวน',
+        'headerOptions'=>['class'=>'text-center'],
+        'contentOptions'=>['class'=>'text-center']
     ],    
     
 ];
@@ -53,7 +37,7 @@ echo GridView::widget([
     'hover' => true,
     'striped' => false,
     'floatHeader' => FALSE,
-    'showPageSummary' => true,
+    //'showPageSummary' => true,
     'panel' => [
         'type' => GridView::TYPE_PRIMARY,
         'heading' => 'สิบอันดับโรค OPD'
@@ -61,4 +45,27 @@ echo GridView::widget([
 ]);
 ?>
 
+<?php echo Highcharts::widget([
+    'options'=>[
+        'credits' => ['enabled' => false],
+        'title'=>['text'=>'๑๐ อันดับโรค OPD'],
+        'xAxis'=>[
+            'categories'=>$icdname
+        ],
+        'yAxis'=>[
+            'title'=>['text'=>'จำนวน(คน)']
+        ],
+        'series'=>[
+            [
+                'type'=>'column',
+                'name'=>'จำนวน',
+                'data'=>$a,
+                'dataLabels'=>[
+                    'enabled'=>true,
+                ],
+                
+            ],
+        ]
+    ]
+]);?>
 
