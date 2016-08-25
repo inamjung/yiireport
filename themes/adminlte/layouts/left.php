@@ -32,6 +32,7 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> กำหนดสิทธิ์', 'url' => ['admin/assignment']],
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> กลุ่มงาน', 'url' => ['groups/index']],
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> หน่วยงาน', 'url' => ['departments/index']],
                     ['label' => '<i class="fa fa-bicycle" aria-hidden="true"></i> เพิ่มหน่วยงาน','url' => ['departments/create']],
