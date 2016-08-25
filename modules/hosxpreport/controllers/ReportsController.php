@@ -37,4 +37,27 @@ class ReportsController extends Controller{
             'a'=>$a
         ]);
     }
+    public function actionIndivopddiag(){
+        
+        $sql = "select a.hn,p.pname,p.fname,p.lname,a.pdx,a.vstdate
+        from vn_stat a 
+        left outer join patient p on p.hn=a.hn
+        left outer join icd101 i on i.code=a.main_pdx 
+        where a.vstdate between '2013-10-01' and '2013-10-31' 
+        and a.pdx<>'' and a.pdx is not null 
+        and a.pdx='I10'
+        order by a.vn";
+        
+         try {
+            $rawData = \Yii::$app->db2->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        
+        return $this->render('indivopddiag', [
+            'rawData' => $rawData,
+            'sql'=>$sql
+            
+        ]);
+    }
 }

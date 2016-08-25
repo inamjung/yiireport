@@ -39,7 +39,7 @@ echo GridView::widget([
     'floatHeader' => FALSE,
     //'showPageSummary' => true,
     'panel' => [
-        'type' => GridView::TYPE_PRIMARY,
+        'type' => GridView::TYPE_SUCCESS,
         'heading' => 'สิบอันดับโรค OPD'
     ],
 ]);
