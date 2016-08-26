@@ -47,7 +47,19 @@ use yii\widgets\ActiveForm;
         ]);
         ?>
         </div>        
-          
+        <?php
+            $list = ['10' => 'จ่ายสด', '89' => 'บัตรทอง'];
+            echo Select2::widget([
+                'name' => 'pttype',
+                'data' => $list,
+                'value' => $pttype,
+                'size' => Select2::MEDIUM,
+                'options' => ['placeholder' => 'เลือก สิทธิ์..'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>  
         <div class="col-xs-4 col-sm-4 col-md-2">
             <button class='btn btn-danger'>ประมวลผล</button>
         </div>    
