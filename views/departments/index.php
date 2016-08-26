@@ -42,8 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => '-'],   
-    'filterModel'=>$searchModel,    
+    //'filterModel'=>$searchModel,    
     'responsive' => TRUE,
+    'striped'=>false,
     'hover' => true,
     'floatHeader' => true,
     'panel' => [
@@ -72,18 +73,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     'view'=>function($url,$model,$key){
                         return Html::a('<i class="glyphicon glyphicon-search"></i> รายละเอียด',$url,['class'=>'btn btn-info']);
                     }, 
-                    'update'=>function($url,$model,$key){
-                        return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url,['class'=>'btn btn-default']);
-                    },
-                    'delete'=>function($url,$model,$key){
-                         return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,[
-                                'title' => Yii::t('yii', 'Delete'),
-                                'data-confirm' => Yii::t('yii', 'คุณต้องการลบไฟล์นี้?'),
-                                'data-method' => 'post',
-                                'data-pjax' => '0',
-                                'class'=>'btn btn-default'
-                                ]);
-                    }
+//                    'update'=>function($url,$model,$key){
+//                        return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url,['class'=>'btn btn-warning']);
+//                    },
+//                    'delete'=>function($url,$model,$key){
+//                         return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,[
+//                                //'class'=>'btn btn-danger'
+//                                'title' => Yii::t('yii', 'Delete'),
+//                                'data-confirm' => Yii::t('yii', 'คุณต้องการลบไฟล์นี้?'),
+//                                'data-method' => 'post',
+//                                'data-pjax' => '0',
+//                                'class'=>'btn btn-danger'
+//                                ]);
+//                    }
                 ]
             ],         
         
