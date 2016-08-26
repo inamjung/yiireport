@@ -50,10 +50,10 @@ use kartik\select2\Select2;
         </div>  
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <?php
-            $list = ['10' => 'จ่ายสด', '89' => 'บัตรทอง'];
+            $a = ['10' => 'จ่ายเงินสด', '89' => 'บัตรทอง'];
             echo Select2::widget([
                 'name' => 'pttype',
-                'data' => $list,
+                'data' => $a,
                 'value' => $pttype,
                 'size' => Select2::MEDIUM,
                 'options' => ['placeholder' => 'เลือก สิทธิ์..'],
