@@ -98,11 +98,11 @@ class ReportsController extends Controller{
             and pt.pttype='$pttype'
             order by a.vn")->queryAll();
         
-       for ($i = 0; $i < sizeof($data); $i++) {
-            $pdx[] = $data[$i]['pdx'];        
-            $icdname[] = $data[$i]['icdname']; 
-            $pttype[] = $data[$i]['pttype']; 
-        }
+//       for ($i = 0; $i < sizeof($data); $i++) {
+//            $pdx[] = $data[$i]['pdx'];        
+//            $icdname[] = $data[$i]['icdname']; 
+//            $pttype[] = $data[$i]['pttype']; 
+//        }
         
         $dataProvider = new ArrayDataProvider([
                 'allModels'=>$data, 

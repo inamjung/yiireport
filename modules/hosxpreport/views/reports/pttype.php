@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use kartik\grid\GridView;
 use miloschuman\highcharts\Highcharts;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 ?>
 <?php $form = ActiveForm::begin(['method' => 'get',
 'action' => Url::to(['reports/pttype']),]); ?>
@@ -46,8 +47,9 @@ use yii\widgets\ActiveForm;
             ],            
         ]);
         ?>
-        </div>        
-        <?php
+        </div>  
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <?php
             $list = ['10' => 'จ่ายสด', '89' => 'บัตรทอง'];
             echo Select2::widget([
                 'name' => 'pttype',
@@ -59,8 +61,10 @@ use yii\widgets\ActiveForm;
                     'allowClear' => true
                 ],
             ]);
-            ?>  
-        <div class="col-xs-4 col-sm-4 col-md-2">
+            ?> 
+            </div>    
+         
+        <div class="col-xs-2 col-sm-2 col-md-2">
             <button class='btn btn-danger'>ประมวลผล</button>
         </div>    
          
@@ -123,7 +127,8 @@ echo GridView::widget([
     //'showPageSummary' => true,
     'panel' => [
         'type' => GridView::TYPE_SUCCESS,
-        'heading' => 'สิบอันดับโรค OPD'
+        'heading' => 'รานชื่อผู้ป่วยตามสิทธิ์',
+        //'before'=>'รานชื่อผู้ป่วยตามสิทธิ์',
     ],
 ]);
 ?>
