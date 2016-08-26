@@ -39,14 +39,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ]);
 ?>
     
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'export'=>[
-                    GridView::EXCEL=>[]
-                ],
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <?php echo \kartik\grid\GridView::widget([
+    'dataProvider' => $dataProvider,
+    'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => '-'],   
+    'filterModel'=>$searchModel,    
+    'responsive' => TRUE,
+    'hover' => true,
+    'floatHeader' => true,
+    'panel' => [
+        'before' => '',
+        'type' => \kartik\grid\GridView::TYPE_SUCCESS,        
+    ],
+    
+    'columns' => [
+        ['class'=>'kartik\grid\SerialColumn'],
 
             //'id',
             //'group_id',
@@ -57,7 +63,31 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'department',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options'=>['style'=>'width:80px;'],
+                'template'=>'<div class="btn-group btn-group-sm" role="group" aria-label="...">{view}</div>',                
+                'buttons'=>[
+                    
+                    'view'=>function($url,$model,$key){
+                        return Html::a('<i class="glyphicon glyphicon-search"></i> รายละเอียด',$url,['class'=>'btn btn-info']);
+                    }, 
+                    'update'=>function($url,$model,$key){
+                        return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url,['class'=>'btn btn-default']);
+                    },
+                    'delete'=>function($url,$model,$key){
+                         return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,[
+                                'title' => Yii::t('yii', 'Delete'),
+                                'data-confirm' => Yii::t('yii', 'คุณต้องการลบไฟล์นี้?'),
+                                'data-method' => 'post',
+                                'data-pjax' => '0',
+                                'class'=>'btn btn-default'
+                                ]);
+                    }
+                ]
+            ],         
+        
+    ]
+]);
+?>  
 </div>
